@@ -46,10 +46,7 @@ class User extends Model
 
     protected $fillable = [
         'email',
-        'theme',
-        'locale',
-        'timezone',
-        'notifications_enabled',
+        ...
     ];
 
     protected string $jsonConfigAttribute = 'config';
