@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasJsonConfig
 {
-    protected string $jsonConfigAttribute = 'config';
+    protected string $jsonConfigColumnDefault = 'config';
 
     protected bool $jsonAttributesExpanded = false;
 
@@ -27,25 +27,25 @@ trait HasJsonConfig
 
     protected function initializeHasJsonConfig(): void
     {
-        $attributeName = $this->getJsonSchemaAttributeName();
+        $attributeName = $this->getJsonSchemaColumn();
         if (!array_key_exists($attributeName, $this->casts)) {
             $this->casts[$attributeName] = 'array';
         }
     }
 
-    protected function getJsonSchemaAttributeName(): string
+    protected function getJsonSchemaColumn(): string
     {
-        return $this->jsonConfigAttribute;
+        return $this->jsonConfigColumn ?? $this->jsonConfigColumnDefault;
     }
 
-    protected function getJsonSchemaAttributeNames(): array
+    protected function getJsonSchemaAttributes(): array
     {
         return $this->jsonConfigAttributes ?? [];
     }
 
     protected function shouldStoreInJsonSchema(string $key): bool
     {
-        return in_array($key, $this->getJsonSchemaAttributeNames(), true);
+        return in_array($key, $this->getJsonSchemaAttributes(), true);
     }
 
     protected function expandJsonSchemaAttributes(): void
@@ -54,7 +54,7 @@ trait HasJsonConfig
             return;
         }
 
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
         $jsonData = $this->getAttributeValue($jsonAttributeName);
 
         if (is_array($jsonData) && !empty($jsonData)) {
@@ -70,8 +70,8 @@ trait HasJsonConfig
 
     protected function compactJsonSchemaAttributes(): void
     {
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
-        $jsonSchemaAttributeNames = $this->getJsonSchemaAttributeNames();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
+        $jsonSchemaAttributeNames = $this->getJsonSchemaAttributes();
 
         if (empty($jsonSchemaAttributeNames)) {
             return;
@@ -102,7 +102,7 @@ trait HasJsonConfig
         }
 
         if ($this->shouldStoreInJsonSchema($key)) {
-            $jsonAttributeName = $this->getJsonSchemaAttributeName();
+            $jsonAttributeName = $this->getJsonSchemaColumn();
             $jsonData = $this->getAttributeValue($jsonAttributeName);
 
             if (is_array($jsonData) && array_key_exists($key, $jsonData)) {
@@ -115,7 +115,7 @@ trait HasJsonConfig
 
     public function setAttribute($key, $value)
     {
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
 
         if ($key === $jsonAttributeName) {
             $this->jsonAttributesExpanded = false;
@@ -129,7 +129,7 @@ trait HasJsonConfig
     {
         $array = parent::toArray();
 
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
         $jsonData = $this->getAttributeValue($jsonAttributeName);
 
         if (is_array($jsonData)) {
@@ -145,7 +145,7 @@ trait HasJsonConfig
 
     public function hasJsonSchemaAttribute(string $key): bool
     {
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
         $jsonData = $this->getAttributeValue($jsonAttributeName);
 
         return is_array($jsonData) && array_key_exists($key, $jsonData);
@@ -153,7 +153,7 @@ trait HasJsonConfig
 
     public function getConfigAttributes(): array
     {
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
         $jsonData = $this->getAttributeValue($jsonAttributeName);
 
         return is_array($jsonData) ? $jsonData : [];
@@ -172,7 +172,7 @@ trait HasJsonConfig
 
     public function removeJsonConfig(string $key): self
     {
-        $jsonAttributeName = $this->getJsonSchemaAttributeName();
+        $jsonAttributeName = $this->getJsonSchemaColumn();
         $jsonData = $this->getAttributeValue($jsonAttributeName);
 
         if (is_array($jsonData) && array_key_exists($key, $jsonData)) {
@@ -200,7 +200,7 @@ trait HasJsonConfig
     public function getFillable(): array
     {
         $fillable = parent::getFillable();
-        $jsonSchemaAttributes = $this->getJsonSchemaAttributeNames();
+        $jsonSchemaAttributes = $this->getJsonSchemaAttributes();
         
         return array_unique(array_merge($fillable, $jsonSchemaAttributes));
     }

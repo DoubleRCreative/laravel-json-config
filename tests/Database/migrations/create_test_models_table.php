@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('test_models', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('config')->nullable();
+            $table->json('configKey')->nullable();
             $table->timestamps();
         });
     }

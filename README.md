@@ -49,7 +49,7 @@ class User extends Model
         ...
     ];
 
-    protected string $jsonConfigAttribute = 'config';
+    protected string $jsonConfigColumn = 'config';
 
     protected array $jsonConfigAttributes = [
         'theme',
@@ -62,7 +62,7 @@ class User extends Model
 
 | Property | Purpose |
 |---|---|
-| `$jsonConfigAttribute` | The database column name (default: `'config'`) |
+| `$jsonConfigColumn` | The database column name (default: `'config'`) |
 | `$jsonConfigAttributes` | List of attribute names to store in that JSON column |
 
 > The JSON config attributes **must** be included in your model's `$fillable` array when using mass assignment (`::create()`, `::update()`, `fill()`).

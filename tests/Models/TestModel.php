@@ -15,7 +15,7 @@ class TestModel extends Model
         'name',
     ];
 
-    protected string $jsonConfigAttribute = 'config';
+    protected string $jsonConfigColumn = 'configKey';
 
     protected array $jsonConfigAttributes = [
         'theme',
