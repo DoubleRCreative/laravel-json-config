@@ -1,9 +1,9 @@
 <?php
 
-namespace RussellRamey\JsonConfig\Tests\Models;
+namespace DRC\JsonConfig\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use RussellRamey\JsonConfig\HasJsonConfig;
+use DRC\JsonConfig\HasJsonConfig;
 
 class TestModel extends Model
 {

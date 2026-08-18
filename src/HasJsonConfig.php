@@ -1,6 +1,6 @@
 <?php
 
-namespace RussellRamey\JsonConfig;
+namespace DRC\JsonConfig;
 
 use Illuminate\Database\Eloquent\Model;
 

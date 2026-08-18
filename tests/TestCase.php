@@ -1,6 +1,6 @@
 <?php
 
-namespace RussellRamey\JsonConfig\Tests;
+namespace DRC\JsonConfig\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -26,7 +26,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \RussellRamey\JsonConfig\JsonConfigServiceProvider::class,
+            \DRC\JsonConfig\JsonConfigServiceProvider::class,
         ];
     }
 }

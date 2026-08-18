@@ -1,5 +1,5 @@
 {
-    "name": "russellramey/laravel-jsonconfig",
+    "name": "drc/laravel-jsonconfig",
     "description": "Laravel trait for managing model attributes stored as JSON in a single database column.",
     "type": "library",
     "license": "MIT",
@@ -20,18 +20,18 @@
     },
     "autoload": {
         "psr-4": {
-            "RussellRamey\\JsonConfig\\": "src/"
+            "DRC\\JsonConfig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "RussellRamey\\JsonConfig\\Tests\\": "tests/"
+            "DRC\\JsonConfig\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "RussellRamey\\JsonConfig\\JsonConfigServiceProvider"
+                "DRC\\JsonConfig\\JsonConfigServiceProvider"
             ]
         }
     },

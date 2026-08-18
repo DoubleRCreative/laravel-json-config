@@ -1,8 +1,8 @@
 <?php
 
-namespace RussellRamey\JsonConfig\Tests;
+namespace DRC\JsonConfig\Tests;
 
-use RussellRamey\JsonConfig\Tests\Models\TestModel;
+use DRC\JsonConfig\Tests\Models\TestModel;
 
 class HasJsonConfigTest extends TestCase
 {
