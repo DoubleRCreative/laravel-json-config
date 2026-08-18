@@ -4,6 +4,12 @@
     "type": "library",
     "license": "MIT",
     "version": "0.1.0",
+    "keywords": [
+        "laravel",
+        "trait",
+        "config",
+        "eloquent"
+    ],
     "authors": [
         {
             "name": "Russell Ramey",
